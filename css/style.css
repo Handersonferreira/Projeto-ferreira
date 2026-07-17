@@ -1,5 +1,5 @@
 body {
-    background-image: url(/estudos/ex007/IMG_3125.jpg);
+    background-image: url(/Alee/IMG_3125.jpg);
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
@@ -14,6 +14,7 @@ body {
 main {
     background-color: #4b4b4b74;
     width: 100%;
+    padding: 20px;
     border-radius: 10px;
     margin: auto ;
     box-shadow: 5px 5px 10px rgb(49, 49, 49);
