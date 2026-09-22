@@ -1,0 +1,231 @@
+/*
+================================================================
+  ESTILOS DO PROJETO FERREIRA
+  Objetivo: Design Moderno com Glassmorphism e Responsividade
+================================================================
+*/
+
+/*
+   :root - Variáveis Globais
+   Usamos variáveis para não ter que repetir a mesma cor
+   em vários lugares. Se quisermos mudar o vermelho do site,
+   mudamos apenas aqui!
+*/
+:root {
+    --primary: #d01d10;        /* Vermelho Principal */
+    --primary-light: #ff4d4d;  /* Vermelho mais claro para destaques */
+    --bg-overlay: rgba(0, 0, 0, 0.7); /* Camada escura sobre a foto de fundo */
+    --glass-bg: rgba(255, 255, 255, 0.05); /* Fundo branco bem transparente (vidro) */
+    --glass-border: rgba(255, 255, 255, 0.1); /* Borda fina para dar profundidade ao vidro */
+    --text-main: #ffffff;      /* Texto branco */
+    --text-muted: #cccccc;     /* Texto cinza para descrições */
+    --font-title: 'Playfair Display', serif; /* Fonte elegante para títulos */
+    --font-body: 'DM Sans', sans-serif;       /* Fonte limpa para leitura */
+}
+
+/* Reset Básico: Remove margens e paddings padrão do navegador */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/*
+   BODY - A base de tudo
+   Aqui aplicamos a imagem de fundo fixa e o degradê escuro
+*/
+body {
+    background: linear-gradient(var(--bg-overlay), var(--bg-overlay)),
+                url('../img/IMG_3125.jpg') no-repeat center center fixed;
+    background-size: cover; /* Faz a imagem cobrir a tela toda sem distorcer */
+    color: var(--text-main);
+    font-family: var(--font-body);
+    line-height: 1.6; /* Aumenta o espaço entre linhas para facilitar a leitura */
+    overflow-x: hidden; /* Evita que apareça a barra de rolagem horizontal */
+}
+
+/* Centraliza o conteúdo do site e define a largura máxima */
+main {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/*
+   HERO SECTION - Primeira dobra do site
+   Usamos Flexbox para centralizar tudo perfeitamente no meio da tela
+*/
+.hero {
+    min-height: 100vh; /* Ocupa 100% da altura da tela do usuário */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 2rem;
+}
+
+.hero-tag {
+    color: var(--primary-light);
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+    animation: fadeUp 0.8s ease forwards;
+}
+
+.hero h1 {
+    font-family: var(--font-title);
+    font-size: clamp(3rem, 12vw, 7rem); /* Fonte fluida: diminui no celular e aumenta no PC */
+    font-weight: 900;
+    line-height: 1;
+    margin-bottom: 1.5rem;
+}
+
+.hero h1 span {
+    display: block;
+    color: var(--primary);
+    font-style: italic;
+}
+
+/*
+   GLASSMORPHISM - Efeito de Vidro
+   O segredo está no backdrop-filter: blur, que desfoca o fundo
+*/
+section {
+    background: var(--glass-bg);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px); /* Suporte para Safari */
+    border: 1px solid var(--glass-border);
+    border-radius: 24px;
+    padding: 3rem;
+    margin: 4rem 0;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    transition: transform 0.3s ease;
+}
+
+/* Efeito de levante quando passa o mouse na seção */
+section:hover {
+    transform: translateY(-5px);
+    border-color: var(--primary);
+}
+
+h2 {
+    font-family: var(--font-title);
+    color: var(--primary-light);
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    position: relative;
+}
+
+/* Linha decorativa embaixo do H2 usando pseudo-elemento ::after */
+h2::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -8px;
+    width: 60px;
+    height: 4px;
+    background: var(--primary);
+    border-radius: 2px;
+}
+
+p {
+    color: var(--text-muted);
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+}
+
+/*
+   REDES SOCIAIS - Organizadas com CSS Grid
+   O repeat(auto-fit...) faz os itens mudarem de coluna sozinhos
+*/
+ul {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+li {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    background: rgba(255, 255, 255, 0.05);
+    padding: 1rem;
+    border-radius: 12px;
+    transition: 0.3s;
+}
+
+li:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: scale(1.05); /* Aumenta levemente o card */
+}
+
+li img {
+    width: 32px;
+    height: 32px;
+    object-fit: contain;
+}
+
+a {
+    color: var(--text-main);
+    text-decoration: none;
+    font-weight: 500;
+    transition: 0.3s;
+}
+
+a:hover {
+    color: var(--primary-light);
+}
+
+/* INDICADOR DE SCROLL - Linha animada */
+.scroll-hint {
+    position: absolute;
+    bottom: 3rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    opacity: 0.7;
+}
+
+.scroll-line {
+    width: 2px;
+    height: 50px;
+    background: linear-gradient(to bottom, var(--primary), transparent);
+    animation: scrollPulse 2s infinite;
+}
+
+/* RODAPÉ */
+footer {
+    text-align: center;
+    padding: 4rem 0;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+}
+
+/*
+   ANIMATIONS - Keyframes
+   Define a trajetória do movimento (do ponto A ao ponto B)
+*/
+@keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes scrollPulse {
+    0% { transform: scaleY(0); transform-origin: top; }
+    50% { transform: scaleY(1); transform-origin: top; }
+    100% { transform: scaleY(0); transform-origin: bottom; }
+}
+
+/* RESPONSIVIDADE: Ajustes para telas pequenas (Celulares) */
+@media (max-width: 600px) {
+    section { padding: 1.5rem; }
+    .hero h1 { font-size: 3.5rem; }
+}
